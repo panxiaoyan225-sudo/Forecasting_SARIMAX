@@ -1,6 +1,11 @@
 name: Daily SARIMAX Forecast Run
 
 on:
+  # 1. Trigger on every push to the main branch
+  push:
+    branches:
+      - main
+      
   # Automated schedule: Daily at 09:00 UTC
   schedule:
     - cron: '0 9 * * *'

@@ -30,5 +30,6 @@ This project is managed via **Databricks Git Folders (Repos)**. This allows for 
 
 ### 2. Environment Setup
 The notebook is designed to run on a Databricks Runtime (ML recommended). Key dependencies are installed via `%pip` magic commands or cluster-scoped libraries:
+
 ```python
 %pip install statsmodels pandas matplotlib

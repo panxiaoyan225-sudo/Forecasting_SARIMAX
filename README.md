@@ -1,6 +1,6 @@
 # Forecasting with SARIMAX on Azure Databricks
 
-A seasonal time series forecasting model using the **SARIMAX** algorithm. The analysis is performed within **Azure Databricks**, utilizing its distributed computing capabilities and integrated Git version control.
+A seasonal time series forecasting model using the **SARIMAX** algorithm. The analysis is performed within **Azure Databricks**, utilizing its distributed computing capabilities and integrated Git version control, orchestrated via GitHub Actions for daily automated execution and reliability..
 
 ## 🚀 Project Overview
 The goal of this analysis is to model the historical growth and seasonal patterns of airline travelers and project those trends 24 months into the future. 

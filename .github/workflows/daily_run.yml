@@ -1,0 +1,42 @@
+name: Daily SARIMAX Forecast Run
+
+on:
+  # Automated schedule: Daily at 09:00 UTC
+  schedule:
+    - cron: '0 9 * * *'
+  
+  # Manual trigger: Enables the "Run workflow" button in the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build-and-run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+          cache: 'pip' # Optional: speeds up subsequent runs
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas numpy matplotlib statsmodels
+
+      - name: Execute Forecast Script
+        # Replace 'Sarimax_model.py' with your actual script name
+        # If using a notebook, you might need 'nbconvert' to run it
+        run: python Sarimax_model.py
+
+      - name: Upload Results
+        # This saves your plots/data as an artifact you can download
+        uses: actions/upload-artifact@v4
+        with:
+          name: forecast-results
+          path: |
+            *.png
+            forecast_output.csv

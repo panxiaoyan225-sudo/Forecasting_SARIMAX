@@ -1,0 +1,20 @@
+# This is a Databricks asset bundle definition for Forecasting_SARIMAX.
+# The Databricks extension requires databricks.yml configuration file.
+# See https://docs.databricks.com/dev-tools/bundles/index.html for documentation.
+
+bundle:
+  name: Forecasting_SARIMAX
+
+targets:
+  dev:
+    workspace:
+      host: https://dbc-52cab557-72f1.cloud.databricks.com
+      root_path: /Workspace/Repos/panxiaoyan225@gmail.com/Forecasting_SARIMAX
+      
+
+
+  ## Optionally, there could be 'staging' or 'prod' targets here.
+  #
+  # prod:
+  #   workspace:
+  #     host: https://dbc-52cab557-72f1.cloud.databricks.com

@@ -1,20 +1,28 @@
+# Databricks notebook source
+
+%pip install statsmodels
+
+# COMMAND ----------
 import pandas as pd
 import numpy as np
 import statsmodels.api as sm
 import matplotlib.pyplot as plt
 import itertools
 
+# COMMAND ----------
 # 1. Load Data (Standard Airline Passengers dataset)
 # Link to dataset: https://raw.githubusercontent.com/jbrownlee/Datasets/master/airline-passengers.csv
 df = pd.read_csv('airline-passengers.csv', parse_dates=['Month'], index_col='Month')
 y = df['Passengers']
 
+# COMMAND ----------
 # 2. Define Parameter Ranges for Grid Search
 p = d = q = range(0, 2)
 pdq = list(itertools.product(p, d, q))
 # Seasonal components (P, D, Q, s) - s=12 for monthly data
 seasonal_pdq = [(x[0], x[1], x[2], 12) for x in list(itertools.product(p, d, q))]
 
+# COMMAND ----------
 # 3. Grid Search to find the best SARIMAX parameters based on AIC
 best_aic = float("inf")
 best_param = None
@@ -38,16 +46,19 @@ for param in pdq:
 
 print(f'Best SARIMAX: {best_param}x{best_seasonal_param} - AIC:{best_aic}')
 
+# COMMAND ----------
 # 4. Fit the final model
 final_model = sm.tsa.statespace.SARIMAX(y,
                                         order=best_param,
                                         seasonal_order=best_seasonal_param)
 results = final_model.fit()
 
+# COMMAND ----------
 # 5. Forecasting (predicting the next 24 months)
 pred_uc = results.get_forecast(steps=24)
 pred_ci = pred_uc.conf_int()
 
+# COMMAND ----------
 # 6. Visualization
 ax = y.plot(label='Observed', figsize=(12, 6))
 pred_uc.predicted_mean.plot(ax=ax, label='Forecast')

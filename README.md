@@ -4,6 +4,7 @@ A seasonal time series forecasting model using the **SARIMAX** algorithm. The an
 
 ## 🚀 Project Overview
 The goal of this analysis is to model the historical growth and seasonal patterns of airline travelers and project those trends 24 months into the future. 
+<img src="forecast_plot.png" style="max-width:100%; height:auto;" alt="Architecture Diagram">
 
 ### Key Features:
 * **Cloud-Native Workflow:** Developed using Azure Databricks notebooks for interactive data exploration.
